@@ -85,6 +85,26 @@ class BinarySearchTree {
 
   preOrderTraversal(currentNode = this.root) {
     // Your code here
+    console.log(currentNode.val);
+    let prevNode;
+
+    if(currentNode.left){
+      prevNode = currentNode.left
+      this.preOrderTraversal(currentNode.left)
+    }
+    if(currentNode.right){
+      prevNode = currentNode.right
+      this.preOrderTraversal(currentNode.right)
+    }
+
+
+
+
+
+
+
+
+
   }
 
 
