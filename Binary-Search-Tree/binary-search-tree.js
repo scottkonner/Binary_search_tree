@@ -13,54 +13,73 @@ class BinarySearchTree {
     this.root = null
   }
 
-  insert(val, currentNode=this.root) {
+  insert(val, currentNode = this.root) {
     let newNode = new TreeNode(val)
 
-    if(this.root === null){
+    if (this.root === null) {
       return this.root = new TreeNode(val)
     }
 
-    if(val < currentNode.val){
-      if(currentNode.left === null){
-        currentNode.left = new TreeNode(val)
-      }
-      else{
-        this.insert(val, currentNode.left)
-      }
-    }
-    if(val > currentNode.val){
-      if(currentNode.right === null){
-        currentNode.right = new TreeNode(val)
-      }
-      else{
-        this.insert(val, currentNode.right)
-      }
-    }
+    // if(val < currentNode.val){
+    //   if(currentNode.left === null){
+    //     currentNode.left = new TreeNode(val)
+    //   }
+    //   else{
+    //     this.insert(val, currentNode.left)
+    //   }
+    // }
+    // if(val > currentNode.val){
+    //   if(currentNode.right === null){
+    //     currentNode.right = new TreeNode(val)
+    //   }
+    //   else{
+    //     this.insert(val, currentNode.right)
+    //   }
+    // }
 
-  //   while(currentNode !== null){
-  //     if(currentNode.val > newNode.val ){
-  //       currentNode = currentNode.left
-  //   }
-  //   else{
-  //       currentNode = currentNode.right
-  //   }
-  //   currentNode = newNode
-  // }
+    while (currentNode !== null) {
+      //if the newNode.value is less than the current value
+      if (currentNode.val > newNode.val) {
+        // if our left doesn't exist (null), set it equal to the newNode
+        if (currentNode.left === null) {
+          currentNode.left = newNode
+          return;
+        }
+        // if our left does exist (currentNode.left !== null), we want to reassign the currentNode to be the currentNode.left
+        else if (currentNode.left !== null) {
+          currentNode = currentNode.left
+        }
+        // then reassign the currentNode's left pointer to point at the newNode
+      }
+      if (currentNode.val < newNode.val) {
+        // if our right doesn't exist (null), set it equal to the newNode
+        if (currentNode.right === null) {
+          currentNode.right = newNode
+          return;
+        }
+        // if our right does exist (currentNode.right !== null), we want to reassign the currentNode to be the currentNode.right
+        else if (currentNode.right !== null) {
+          currentNode = currentNode.right
+        }
+      }
+    }
 
   }
-  search(target) {
-    let currentNode = this.root
-    while (currentNode !== null){
-      if(currentNode.val === target) return true
 
-      else if(target < currentNode.val){
-        currentNode = currentNode.left
+
+  search(target) {
+      let currentNode = this.root
+      while (currentNode !== null){
+        if(currentNode.val === target) return true
+
+        else if(target < currentNode.val){
+          currentNode = currentNode.left
+        }
+        else if(target > currentNode.val){
+          currentNode = currentNode.right
+        }
       }
-      else if(target > currentNode.val){
-        currentNode = currentNode.right
-      }
-    }
-    return false
+      return false
   }
 
 
@@ -78,7 +97,7 @@ class BinarySearchTree {
     // Your code here
   }
 
-    // Breadth First Traversal - Iterative
+  // Breadth First Traversal - Iterative
   breadthFirstTraversal() {
     // your code here
   }
@@ -86,7 +105,7 @@ class BinarySearchTree {
   // Depth First Traversal - Iterative
   depthFirstTraversal() {
     // your code here
-}
+  }
 }
 
 // bst = new BinarySearchTree();
