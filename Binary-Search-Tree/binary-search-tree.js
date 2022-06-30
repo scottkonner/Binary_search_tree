@@ -68,18 +68,18 @@ class BinarySearchTree {
 
 
   search(target) {
-      let currentNode = this.root
-      while (currentNode !== null){
-        if(currentNode.val === target) return true
+    let currentNode = this.root
+    while (currentNode !== null) {
+      if (currentNode.val === target) return true
 
-        else if(target < currentNode.val){
-          currentNode = currentNode.left
-        }
-        else if(target > currentNode.val){
-          currentNode = currentNode.right
-        }
+      else if (target < currentNode.val) {
+        currentNode = currentNode.left
       }
-      return false
+      else if (target > currentNode.val) {
+        currentNode = currentNode.right
+      }
+    }
+    return false
   }
 
 
@@ -87,10 +87,10 @@ class BinarySearchTree {
     // Your code here
     console.log(currentNode.val);
 
-    if(currentNode.left){
+    if (currentNode.left) {
       this.preOrderTraversal(currentNode.left)
     }
-    if(currentNode.right){
+    if (currentNode.right) {
       this.preOrderTraversal(currentNode.right)
     }
 
@@ -101,12 +101,12 @@ class BinarySearchTree {
   inOrderTraversal(currentNode = this.root) {
     // Your code here
 
-    if(currentNode.left){
+    if (currentNode.left) {
       this.inOrderTraversal(currentNode.left)
     }
     console.log(currentNode.val);
 
-    if(currentNode.right){
+    if (currentNode.right) {
       this.inOrderTraversal(currentNode.right)
     }
 
@@ -117,12 +117,12 @@ class BinarySearchTree {
 
   postOrderTraversal(currentNode = this.root) {
     // Your code here
-    if(currentNode.left){
+    if (currentNode.left) {
       this.postOrderTraversal(currentNode.left)
     }
 
 
-    if(currentNode.right){
+    if (currentNode.right) {
       this.postOrderTraversal(currentNode.right)
     }
 
@@ -130,28 +130,69 @@ class BinarySearchTree {
   }
 
   // Breadth First Traversal - Iterative
-  breadthFirstTraversal() {
+  breadthFirstTraversal(cur = this.root) {
     // your code here
+    const arr = [];
+    arr.push(cur);
+
+    while (arr.length > 0) {
+      let node = arr.shift()
+      console.log(node.val);
+      if (node.left) {
+        arr.push(node.left)
+      }
+      if (node.right) {
+        arr.push(node.right)
+      }
+    }
   }
 
   // Depth First Traversal - Iterative
-  depthFirstTraversal() {
+  depthFirstTraversal(cur = this.root) {
     // your code here
+    // let currentNode = this.root
+
+    //   console.log(currentNode.val);
+
+    //   if(currentNode.right){
+    //     this.depthFirstTraversal(currentNode.right)
+    //   }
+
+    //   if(currentNode.left){
+    //     this.depthFirstTraversal(currentNode.left)
+    //   }
+    const arr = [];
+    arr.push(cur);
+
+    while (arr.length > 0) {
+      let node = arr.pop()
+      console.log(node.val);
+      if (node.left) {
+        arr.push(node.left)
+      }
+      if (node.right) {
+        arr.push(node.right)
+      }
+    }
+
   }
+
+
+
+
+
 }
 
-// bst = new BinarySearchTree();
+bst = new BinarySearchTree();
+bst.insert(4);
+bst.insert(2);
+bst.insert(6);
+bst.insert(1);
+bst.insert(3);
+bst.insert(5);
+bst.insert(7);
 
-
-// bst.insert(4);
-// bst.insert(2);
-
-// let leftNode = bst.root.left;
-// console.log((leftNode.val))
-// console.log(expect(leftNode.left))
-// console.log(expect(leftNode.right))
-
-
+console.log(bst.breadthFirstTraversal())
 
 
 module.exports = { BinarySearchTree, TreeNode };
